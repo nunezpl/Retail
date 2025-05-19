@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Log In</title>
+  <link rel="stylesheet" href="../css/login.css">
+</head>
+<body>
+  <div class="container">
+    <div class="form-section">
+      <h1>Log in</h1>
+      <form action="/api/clientes/login" method="POST">
+        <input type="email" name="correo" placeholder="example.email@gmail.com" required>
+        <input type="password" name="contrasena" placeholder="Enter at least 8+ characters" required>
+        
+        <div class="form-extra">
+          <label><input type="checkbox"> Remember me</label>
+          <a href="forgot_password.html">Forgot password?</a>
+        </div>
+
+        <button type="submit" class="btn fill">Sign in</button>
+      </form>
+      
+      <p class="divider">Or sign in with</p>
+      <div class="social-icons">
+        <button class="social google">G</button>
+        <button class="social facebook">f</button>
+        <button class="social apple"></button>
+      </div>
+    </div>
+    
+    <div class="image-section">
+      <img src="../img/create_account.png" alt="Illustration">
+    </div>
+  </div>
+</body>
+</html>

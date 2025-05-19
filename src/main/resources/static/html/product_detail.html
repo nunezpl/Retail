@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Product Detail</title>
+  <link rel="stylesheet" href="../css/product_detail.css">
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand&display=swap" rel="stylesheet">
+
+</head>
+<body>
+  <header>
+    <nav class="navbar">
+      <div class="logo">ShopiPop</div>
+      <ul class="nav-links">
+        <li><a href="principal.html">Home</a></li>
+        <li><a href="product_catalog.html" class="active">Products</a></li>
+        <li><a href="about_us.html">About Us</a></li>
+      </ul>
+      <div class="nav-buttons">
+        <a href="login.html" class="btn outline">Sign In</a>
+        <a href="create_account.html" class="btn fill">Sign Up</a>
+      </div>
+    </nav>
+  </header>
+
+  <div class="layout">
+    <aside class="sidebar">
+        <ul class="menu">
+          <li>Products</li>
+        </ul>
+        <details>
+          <summary class="category-header">&#9776; Categories</summary>
+          <ul class="category-list">
+            <li><label><input type="checkbox"> Home & Living</label></li>
+            <li><label><input type="checkbox"> Electronics & Gadgets</label></li>
+            <li><label><input type="checkbox"> Fashion & Accessories</label></li>
+            <li><label><input type="checkbox"> Books & Stationery</label></li>
+            <li><label><input type="checkbox"> Kitchen Essentials</label></li>
+            <li><label><input type="checkbox"> Toys & Gifts</label></li>
+            <li><label><input type="checkbox"> Office & Organization</label></li>
+            <li><label><input type="checkbox"> Health & Wellness</label></li>
+            <li><label><input type="checkbox"> Sports & Outdoors</label></li>
+            <li><label><input type="checkbox"> Self-Care Kits</label></li>
+            <li><label><input type="checkbox"> Tech Accessories</label></li>
+            <li><label><input type="checkbox"> Gaming Gear</label></li>
+            <li><label><input type="checkbox"> Smart Home</label></li>
+            <li><label><input type="checkbox"> Pet Supplies</label></li>
+            <li><label><input type="checkbox"> Eco-Friendly</label></li>
+          </ul>
+        </details>
+      </aside>
+
+    <main class="content">
+      <div class="product-detail">
+        <div class="images">
+          <img id="mainImage" src="../img/beauty.jpg" alt="Main Product Image" class="main-image">
+          <div class="thumbnail-row">
+            <img src="../img/beauty.jpg" alt="Thumb" onclick="changeImage(this)">
+            <img src="../img/backpack.jpg" alt="Thumb" onclick="changeImage(this)">
+            <img src="../img/books.jpg" alt="Thumb" onclick="changeImage(this)">
+            <img src="../img/ceramic_mug.jpg" alt="Thumb" onclick="changeImage(this)">
+            <img src="../img/clothing.jpeg" alt="Thumb" onclick="changeImage(this)">
+          </div>
+        </div>
+
+        <div class="info">
+          <h1>Organic Hydrating Face Serum</h1>
+          <p class="brand">Nature’s Essence</p>
+          <p class="rating">⭐ 4.7 (185 reviews)</p>
+          <p class="price"><span class="discounted">$49.99</span> <span class="original">$60.00</span></p>
+          <p class="description">
+            A potent, lightweight serum formulated with organic botanical extracts to deeply hydrate, brighten, and firm your skin.
+          </p>
+
+          <p><strong>Size:</strong></p>
+          <div class="radio-group">
+            <label class="radio-btn">
+              <input type="radio" name="size" />
+              30ml
+            </label>
+            <label class="radio-btn">
+              <input type="radio" name="size" />
+              50ml
+            </label>
+            <label class="radio-btn">
+              <input type="radio" name="size" />
+              100ml
+            </label>
+          </div>
+
+          <p><strong>Scent:</strong></p>
+          <div class="radio-group">
+            <label class="radio-btn">
+              <input type="radio" name="scent" />
+              Unscented
+            </label>
+            <label class="radio-btn">
+              <input type="radio" name="scent" />
+              Lavender
+            </label>
+            <label class="radio-btn">
+              <input type="radio" name="scent" />
+              Rose
+            </label>
+          </div>
+
+          <ul class="policies">
+            <li>🚚 Estimated Delivery: 3–5 business days</li>
+            <li>💲 Shipping Cost: Calculated at Checkout</li>
+            <li>🔁 Return Policy: 30-day free returns</li>
+          </ul>
+
+          <a href="shopping_cart.html" class="btn fill">Add to Cart</a>
+        </div>
+      </div>
+
+      <div class="pagination">
+        <button>&lt;</button>
+        <span>1</span>
+        <button>&gt;</button>
+      </div>
+
+      <div class="tabs">
+        <button class="active">Specifications</button>
+        <button>Reviews (7)</button>
+        <button>Q&A (Placeholder)</button>
+      </div>
+
+      <div class="specs">
+        <p><strong>Volume:</strong> 50ml</p>
+        <p><strong>Key Ingredients:</strong> Hyaluronic Acid, Vitamin C, Green Tea Extract</p>
+        <p><strong>Shelf Life:</strong> 12 Months after Opening</p>
+        <p><strong>Skin Type:</strong> All Types</p>
+        <p><strong>Certifications:</strong> Organic, Vegan, Cruelty-Free</p>
+      </div>
+
+      <h2>Related Products</h2>
+      <div class="related-products">
+        <div class="product-card">
+          <img src="../img/imagen.jpg" alt="Radiant Eye Cream">
+          <p>Radiant Eye Cream</p>
+          <p class="price">$35.00</p>
+          <a href="shopping_cart.html" class="btn outline">Add to Cart</a>
+        </div>
+        <div class="product-card">
+          <img src="../img/imagen.jpg" alt="Vitamin C Cleanser">
+          <p>Vitamin C Cleanser</p>
+          <p class="price">$25.00 <span class="original">$30.00</span></p>
+          <a href="shopping_cart.html" class="btn outline">Add to Cart</a> 
+        </div>
+        <div class="product-card">
+          <img src="../img/imagen.jpg" alt="Nourishing Night Cream">
+          <p>Nourishing Night Cream</p>
+          <p class="price">$55.00</p>
+          <a href="shopping_cart.html" class="btn outline">Add to Cart</a>
+        </div>
+        <div class="product-card">
+          <img src="../img/imagen.jpg" alt="Clay Mask">
+          <p>Clay Mask</p>
+          <p class="price">$20.00</p>
+          <a href="shopping_cart.html" class="btn outline">Add to Cart</a>  
+        </div>
+        <div class="product-card">
+          <img src="../img/imagen.jpg" alt="Lip Balm">
+          <p>Lip Balm</p>
+          <p class="price">$15.00</p>
+          <a href="shopping_cart.html" class="btn outline">Add to Cart</a>   
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script>
+    function changeImage(el) {
+      const mainImg = document.getElementById("mainImage");
+      mainImg.src = el.src;
+    }
+  </script>
+</body>
+</html>
