@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Checkout</title>
+  <link rel="stylesheet" href="../css/checkout.css">
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header>
+    <nav class="navbar">
+      <div class="logo">ShopiPop</div>
+      <ul class="nav-links">
+        <li><a href="principal.html">Home</a></li>
+        <li><a href="product_catalog.html" class="active">Products</a></li>
+        <li><a href="about_us.html">About Us</a></li>
+      </ul>
+      <div class="nav-buttons">
+        <a href="login.html" class="btn outline">Sign In</a>
+        <a href="create_account.html" class="btn fill">Sign Up</a>
+      </div>
+    </nav>
+  </header>
+    <main class="content">
+      <form action="order_confirmation.html" method="GET">
+        <div class="shipping-details">
+          <h2>Shipping Details</h2>
+          <input type="text" placeholder="Full Name" required>
+          <input type="text" placeholder="Address Line 1" required>
+          <input type="text" placeholder="Address Line 2 (Optional)">
+          <div class="inline-fields">
+            <input type="text" placeholder="City" required>
+            <input type="text" placeholder="State / Province" required>
+          </div>
+          <div class="inline-fields">
+            <input type="text" placeholder="Zip / Postal Code" required>
+            <select required>
+              <option selected disabled>Country</option>
+              <option>United States</option>
+              <option>Canada</option>
+              <option>Mexico</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="payment-method">
+          <h2>Payment Method</h2>
+          <div class="radio-group">
+            <label class="radio-btn">
+              <input type="radio" name="payment" />
+              Card
+            </label>
+            <label class="radio-btn">
+              <input type="radio" name="payment" />
+              PayPal
+            </label>
+          </div>
+          
+          <input type="text" placeholder="Card Number" required>
+          <div class="inline-fields">
+            <input type="text" placeholder="Expiry Date (MM/YY)" required>
+            <input type="text" placeholder="CVC" required>
+          </div>
+        </div>
+      </form>
+
+      <div class="order-summary">
+        <div class="summary-box">
+          <div class="item">
+            <img src="../img/imagen.jpg" alt="Organic Face Serum">
+            <div>
+              <p><strong>Organic Face Serum</strong></p>
+              <p>Code: NECK001</p>
+            </div>
+            <p>$32.00</p>
+          </div>
+          <div class="item">
+            <img src="../img/imagen.jpg" alt="Natural Deodorant">
+            <div>
+              <p><strong>Natural Deodorant</strong></p>
+              <p>Code: WALL005</p>
+            </div>
+            <p>$44.00</p>
+          </div>
+          <div class="item">
+            <img src="../img/imagen.jpg" alt="Hydrating Night Cream">
+            <div>
+              <p><strong>Hydrating Night Cream</strong></p>
+              <p>Code: HEAD223</p>
+            </div>
+            <p>$48.00</p>
+          </div>
+
+          <hr>
+          <p>Subtotal: $124.00</p>
+          <p style="color: #f47ca3;">Discount: -$15.00</p>
+          <p>Shipping Fee: $12.00</p>
+          <p class="total">Total: $121.00</p>
+
+          <div class="voucher">
+            <input type="text" placeholder="Voucher Code">
+            <button type="button">Apply</button>
+          </div>
+          <a href="order_confirmation.html" class="place-order">Place Order</a>
+        </div>
+      </div>
+    </main>
+  </div>
+  <footer class="footer">
+    <div class="newsletter">
+      <p>Subscribe to our newsletter</p>
+      <input type="email" placeholder="Input your email">
+      <button class="btn fill">Subscribe</button>
+    </div>
+    <div class="footer-links">
+      <p><strong>ShopiPop</strong></p>
+      <ul>
+        <li>Pricing</li>
+        <li>About us</li>
+        <li>Features</li>
+        <li>Help Center</li>
+        <li>Contact us</li>
+        <li>FAQs</li>
+        <li>Careers</li>
+      </ul>
+      <p>© 2024 Brand, Inc. • Privacy • Terms • Sitemap</p>
+    </div>
+  </footer>
+</body>
+</html>
