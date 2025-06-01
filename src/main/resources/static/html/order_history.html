@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Order History</title>
+  <link rel="stylesheet" href="../css/order_history.css">
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header>
+    <nav class="navbar">
+      <div class="logo">ShopiPop</div>
+      <ul class="nav-links">
+        <li><a href="principal.html">Home</a></li>
+        <li><a href="product_catalog.html" class="active">Products</a></li>
+        <li><a href="about_us.html">About Us</a></li>
+      </ul>
+      <div class="nav-buttons">
+        <a href="login.html" class="btn outline">Sign In</a>
+        <a href="create_account.html" class="btn fill">Sign Up</a>
+      </div>
+    </nav>
+  </header>
+
+  <main class="order-history">
+    <section class="account-overview">
+      <h2>Account Overview</h2>
+      <p>Welcome, Jane Smith</p>
+      <p>Total Orders: 20</p>
+      <p>Last Login: 5/14/2025</p>
+    </section>
+
+    <section class="orders">
+      <h2>My Orders</h2>
+      <div class="filters">
+        <select>
+          <option>All Statuses</option>
+        </select>
+        <div class="sort">Sort by: <span class="sort-by">Date ▼</span></div>
+      </div>
+
+      <div class="order-list">
+        <div class="order">
+          <div class="info"><strong>Order ID</strong><br>SP10006-8481</div>
+          <div class="info"><strong>Date</strong><br>3/21/2025</div>
+          <div class="info"><strong>Status</strong><br><span class="status shipped">Shipped</span></div>
+          <div class="info"><strong>Total</strong><br>$1815.47</div>
+          <div class="info"><button class="btn outline">View Details</button></div>
+        </div>
+
+        <div class="order">
+          <div class="info"><strong>Order ID</strong><br>SP10005-8JNR</div>
+          <div class="info"><strong>Date</strong><br>3/13/2025</div>
+          <div class="info"><strong>Status</strong><br><span class="status shipped">Shipped</span></div>
+          <div class="info"><strong>Total</strong><br>$474.98</div>
+          <div class="info"><button class="btn outline">View Details</button></div>
+        </div>
+
+        <div class="order">
+          <div class="info"><strong>Order ID</strong><br>SP10011-MXH6</div>
+          <div class="info"><strong>Date</strong><br>3/8/2025</div>
+          <div class="info"><strong>Status</strong><br><span class="status shipped">Shipped</span></div>
+          <div class="info"><strong>Total</strong><br>$96.98</div>
+          <div class="info"><button class="btn outline">View Details</button></div>
+        </div>
+
+        <div class="order">
+          <div class="info"><strong>Order ID</strong><br>SP10014-GBGG</div>
+          <div class="info"><strong>Date</strong><br>3/4/2025</div>
+          <div class="info"><strong>Status</strong><br><span class="status checked">Checked</span></div>
+          <div class="info"><strong>Total</strong><br>$857.97</div>
+          <div class="info"><button class="btn outline">View Details</button></div>
+        </div>
+      </div>
+    </section>   
+  </main>
+  <footer class="footer">
+    <div class="newsletter">
+      <p>Subscribe to our newsletter</p>
+      <input type="email" placeholder="Input your email">
+      <button class="btn fill">Subscribe</button>
+    </div>
+    <div class="footer-links">
+      <p><strong>ShopiPop</strong></p>
+      <ul>
+        <li>Pricing</li>
+        <li>About us</li>
+        <li>Features</li>
+        <li>Help Center</li>
+        <li>Contact us</li>
+        <li>FAQs</li>
+        <li>Careers</li>
+      </ul>
+      <p>© 2024 Brand, Inc. • Privacy • Terms • Sitemap</p>
+    </div>
+  </footer>
+</body>
+</html>

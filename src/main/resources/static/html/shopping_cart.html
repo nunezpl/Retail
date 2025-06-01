@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Product Detail</title>
+  <link rel="stylesheet" href="../css/shopping_cart.css">
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand&display=swap" rel="stylesheet">
+  </head>
+<body>
+  <header>
+    <nav class="navbar">
+      <div class="logo">ShopiPop</div>
+      <ul class="nav-links">
+        <li><a href="principal.html">Home</a></li>
+        <li><a href="product_catalog.html" class="active">Products</a></li>
+        <li><a href="about_us.html">About Us</a></li>
+      </ul>
+      <div class="nav-buttons">
+        <a href="login.html" class="btn outline">Sign In</a>
+        <a href="create_account.html" class="btn fill">Sign Up</a>
+      </div>
+    </nav>
+  </header>
+
+  <div class="layout">
+  
+      <main class="content">
+        <h2>Order summary</h2> 
+        <div class="cart-container">
+          <div class="cart-summary">
+            <h3><i class="icon">🛒</i> Shopping Bag </h3>
+            <div class="cart-item">
+              <img src="../img/beauty.jpg" alt="Product">
+              <div class="item-info">
+                <p><strong>Organic Face Serum</strong></p>
+                <p>$32.00</p>
+                <select><option>50ml</option></select>
+              </div>
+              <div class="quantity">
+                <button>-</button>
+                <input type="text" value="1">
+                <button>+</button>
+              </div>
+              <p class="item-total">$32.00</p>
+              <button class="remove">🗑️</button>
+            </div>
+  
+            <div class="cart-item">
+              <img src="../img/imagen.jpg" alt="Product">
+              <div class="item-info">
+                <p><strong>Natural Deodorant</strong></p>
+                <p>$22.00</p>
+                <select><option>50g</option></select>
+              </div>
+              <div class="quantity">
+                <button>-</button>
+                <input type="text" value="2">
+                <button>+</button>
+              </div>
+              <p class="item-total">$44.00</p>
+              <button class="remove">🗑️</button>
+            </div>
+  
+            <div class="cart-item">
+              <img src="../img/imagen.jpg" alt="Product">
+              <div class="item-info">
+                <p><strong>Hydrating Night Cream</strong></p>
+                <p>$48.00</p>
+                <select><option>50ml</option></select>
+              </div>
+              <div class="quantity">
+                <button>-</button>
+                <input type="text" value="1">
+                <button>+</button>
+              </div>
+              <p class="item-total">$48.00</p>
+              <button class="remove">🗑️</button>
+            </div>
+          </div>
+  
+          <aside class="checkout-box">
+            <h3>Order Summary</h3>
+            <p>Subtotal <span>$124.00</span></p>
+            <p>Discount <span>-$15.00</span></p>
+            <p>Delivery Fee <span>$12.00</span></p>
+            <input type="text" placeholder="Voucher Code">
+            <button class="btn outline">Apply</button>
+            <h4>Total <span class="total">$121.00</span></h4>
+            <a href="checkout.html" class="btn fill">Proceed to Checkout</a>
+          </aside>
+        </div>
+  
+        <section class="delivery-options">
+          <h3>Delivery Options</h3>
+          <div class="option standard selected">
+            <input type="radio" name="delivery" checked> Standard Delivery
+            <p class="desc">Est. arrival: 5-7 business days</p>
+            <p class="price">$12.00</p>
+          </div>
+          <div class="option express">
+            <input type="radio" name="delivery"> Express Delivery
+            <p class="desc">Est. arrival: 1-2 business days</p>
+            <p class="price">$22.00</p>
+          </div>
+        </section>
+  
+        <section class="customer-info">
+          <h3>Customer Information</h3>
+          <input type="text" placeholder="Full Name" value="Amaya Dunne">
+          <input type="text" placeholder="Phone Number" value="732-123-4567">
+          <input type="text" placeholder="Address" value="4706 Foaz Street, Bayville, New Jersey (NJ)">
+          <label><input type="checkbox" checked> Save as default</label>
+          <textarea placeholder="Delivery Note (Optional)">Please leave package on the back porch.</textarea>
+        </section>
+  
+        <section class="related-products">
+          <h3>Related Products</h3>
+          <div class="product-scroll">
+            <div class="product">
+              <img src="../img/imagen.jpg" alt="">
+              <p><strong>Exfoliating Scrub</strong></p>
+              <p>$18.00</p>
+              <a href="product_detail.html" class="btn outline">View More</a>
+            </div>
+            <div class="product">
+              <img src="../img/imagen.jpg" alt="">
+              <p><strong>Vitamin C Serum</strong></p>
+              <p>$35.00</p>
+              <a href="product_detail.html" class="btn outline">View More</a>
+            </div>
+            <div class="product">
+              <img src="../img/imagen.jpg" alt="">
+              <p><strong>Clay Mask</strong></p>
+              <p>$25.00</p>
+              <a href="product_detail.html" class="btn outline">View More</a>
+            </div>
+            <div class="product">
+              <img src="../img/imagen.jpg" alt="">
+              <p><strong>Toner Mist</strong></p>
+              <p>$20.00</p>
+              <a href="product_detail.html" class="btn outline">View More</a>
+            </div>
+            <div class="product">
+              <img src="../img/imagen.jpg" alt="">
+              <p><strong>Eye Cream</strong></p>
+              <p>$55.00</p>
+              <a href="product_detail.html" class="btn outline">View More</a>
+            </div>
+          </div>
+        </section>
+      </main>
+   
+  </div>
+  <footer class="footer">
+    <div class="newsletter">
+      <p>Subscribe to our newsletter</p>
+      <input type="email" placeholder="Input your email">
+      <button class="btn fill">Subscribe</button>
+    </div>
+    <div class="footer-links">
+      <p><strong>ShopiPop</strong></p>
+      <ul>
+        <li>Pricing</li>
+        <li>About us</li>
+        <li>Features</li>
+        <li>Help Center</li>
+        <li>Contact us</li>
+        <li>FAQs</li>
+        <li>Careers</li>
+      </ul>
+      <p>© 2024 Brand, Inc. • Privacy • Terms • Sitemap</p>
+    </div>
+  </footer>
+</body>
+</html>
