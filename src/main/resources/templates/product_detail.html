@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title th:text="'Detalles de ' + ${producto.nombre}">Detalle del Producto</title>
+  <link rel="stylesheet" th:href="@{/css/product_detail.css}">
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<header>
+  <nav class="navbar">
+    <div class="logo">ShopiPop</div>
+    <ul class="nav-links">
+      <li><a th:href="@{/}" class="active">Home</a></li>
+      <li><a th:href="@{/producto/catalogo}">Products</a></li>
+      <li><a href="/about_us.html">About Us</a></li>
+    </ul>
+    <div class="nav-buttons">
+      <a th:href="@{/api/cliente/create-account}" class="btn outline">Sign Up</a>
+      <a th:href="@{/api/cliente/login}" class="btn fill">Sign In</a>
+    </div>
+  </nav>
+</header>
+
+<div class="layout">
+  <main class="content">
+    <div class="product-detail">
+      <div class="images">
+        <img id="mainImage" th:src="${producto.linkImagen}" th:alt="${producto.nombre}" class="main-image">
+      </div>
+
+      <div class="info">
+        <h1 th:text="${producto.nombre}">Nombre del producto</h1>
+        <p class="brand"><strong>Categoría:</strong> <span th:text="${producto.categoria}">Categoría</span></p>
+        <p><strong>Precio Compra:</strong> <span th:text="'$' + ${producto.precioCompra}">0.0</span></p>
+        <p class="price">
+          <strong>Precio Venta:</strong> <span class="discounted" th:text="'$' + ${producto.precioVenta}">0.0</span>
+        </p>
+        <p><strong>Existencias:</strong> <span th:text="${producto.existencias}">0</span> unidades</p>
+
+        <div class="acciones">
+          <a href="/shopping_cart.html" class="btn fill">Agregar al Carrito</a>
+        </div>
+      </div>
+    </div>
+
+    <section class="extra-box">
+    <h2>Información técnica</h2>
+    <div class="extra-grid">
+      <div><strong>ID:</strong> <span th:text="${producto.id}">ID</span></div>
+      <div><strong>Nombre:</strong> <span th:text="${producto.nombre}">Nombre</span></div>
+      <div><strong>Precio Compra:</strong> <span th:text="'$' + ${producto.precioCompra}">0</span></div>
+      <div><strong>Precio Venta:</strong> <span th:text="'$' + ${producto.precioVenta}">0</span></div>
+      <div><strong>Existencias:</strong> <span th:text="${producto.existencias}">0</span></div>
+      <div><strong>Categoría:</strong> <span th:text="${producto.categoria}">Sin categoría</span></div>
+    </div>
+    </section>
+
+  </main>
+</div>
+
+<footer class="footer">
+  <div class="newsletter">
+    <p>Suscríbete a nuestro boletín</p>
+    <input type="email" placeholder="Escribe tu correo">
+    <button class="btn fill">Suscribirme</button>
+  </div>
+
+  <div class="footer-links">
+    <p><strong>ShopiPop</strong></p>
+    <ul>
+      <li>Precios</li>
+      <li>Acerca de nosotros</li>
+      <li>Características</li>
+      <li>Centro de ayuda</li>
+      <li>Contacto</li>
+      <li>FAQs</li>
+      <li>Empleos</li>
+    </ul>
+    <p>© 2024 Brand, Inc. • Privacidad • Términos • Mapa del sitio</p>
+  </div>
+</footer>
+
+</body>
+</html>

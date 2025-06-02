@@ -321,4 +321,38 @@
     font-size: 13px;
     color: #aaa;
   }
+  .extra-box {
+  background-color: #fff;
+  border: 1px solid #e6e6e6;
+  border-radius: 8px;
+  padding: 24px;
+  margin-top: 30px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  font-family: 'Quicksand', sans-serif;
+}
+
+.extra-box h2 {
+  font-size: 20px;
+  margin-bottom: 16px;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 8px;
+  color: #333;
+}
+
+.extra-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 12px 24px;
+}
+
+.extra-grid div {
+  font-size: 15px;
+  color: #555;
+}
+
+.extra-grid strong {
+  color: #222;
+  font-weight: 600;
+}
+
   

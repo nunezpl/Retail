@@ -6,6 +6,7 @@ import com.ecommerce.backend.service.ClienteService;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
@@ -34,6 +35,17 @@ public class ClienteController {
         this.clienteService = clienteService;
     }
 
+    @GetMapping("/create-account")
+    public String mostrarRegistro() {
+        return "create_account";
+    }
+
+    @GetMapping("/login")
+    public String mostrarLogin() {
+        return "login"; 
+    }
+
+
     @GetMapping
     public List<Cliente> listarClientes() {
         return clienteService.listarClientes();
@@ -45,46 +57,44 @@ public class ClienteController {
     }
 
    @PostMapping("/registro")
-public String registrarRedireccionado(
-        @RequestParam String nombre,
-        @RequestParam String cedula,
-        @RequestParam String correo,
-        @RequestParam String contrasena,
-        RedirectAttributes redirectAttributes) {
+    public String registrarRedireccionado(
+            @RequestParam String nombre,
+            @RequestParam String cedula,
+            @RequestParam String correo,
+            @RequestParam String contrasena,
+            RedirectAttributes redirectAttributes) {
 
-    RestTemplate restTemplate = new RestTemplate();
-    String url = "http://10.43.96.39:5000/api/Clientes";
+        RestTemplate restTemplate = new RestTemplate();
+        String url = "http://10.43.96.39:5000/api/Clientes";
 
-    // Construir JSON como un Map
-    Map<String, Object> body = new HashMap<>();
-    body.put("nombre", nombre);
-    body.put("apellido", ""); 
-    body.put("cedula", Integer.parseInt(cedula));
-    body.put("correo", correo);
-    body.put("telefono", ""); 
-    body.put("password", contrasena); 
+        Map<String, Object> body = new HashMap<>();
+        body.put("nombre", nombre);
+        body.put("apellido", ""); 
+        body.put("cedula", Integer.parseInt(cedula));
+        body.put("correo", correo);
+        body.put("telefono", ""); 
+        body.put("password", contrasena); 
 
-    // Encabezados
-    HttpHeaders headers = new HttpHeaders();
-    headers.setContentType(MediaType.APPLICATION_JSON);
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
 
-    
-    HttpEntity<Map<String, Object>> entity = new HttpEntity<>(body, headers);
+        HttpEntity<Map<String, Object>> entity = new HttpEntity<>(body, headers);
 
-    try {
-        ResponseEntity<String> response = restTemplate.postForEntity(url, entity, String.class);
+        try {
+            ResponseEntity<String> response = restTemplate.postForEntity(url, entity, String.class);
 
-        if (response.getStatusCode().is2xxSuccessful()) {
-            return "redirect:/html/login.html";
-        } else {
-            redirectAttributes.addFlashAttribute("error", "Registro inválido");
-            return "redirect:/html/create_account.html";
+            if (response.getStatusCode().is2xxSuccessful()) {
+                return "redirect:/api/cliente/login";
+            } else {
+                redirectAttributes.addFlashAttribute("error", "Registro inválido");
+                return "redirect:/api/cliente/create-account";
+            }
+        } catch (HttpClientErrorException e) {
+            redirectAttributes.addFlashAttribute("error", "Error: " + e.getStatusCode());
+            return "redirect:/api/cliente/create-account";
         }
-    } catch (HttpClientErrorException e) {
-        redirectAttributes.addFlashAttribute("error", "Error: " + e.getStatusCode());
-        return "redirect:/html/create_account.html";
     }
-}
+
 
 
     @PutMapping("/{cedula}")
@@ -101,7 +111,8 @@ public String registrarRedireccionado(
         public String loginRedireccionadoDesdeFormulario(
         @RequestParam String correo,
         @RequestParam String contrasena,
-        RedirectAttributes redirectAttributes) {
+        RedirectAttributes redirectAttributes,
+        Model model) {
 
     
     RestTemplate restTemplate = new RestTemplate();
@@ -116,22 +127,22 @@ public String registrarRedireccionado(
         ResponseEntity<Map> response = restTemplate.postForEntity(url, body, Map.class);
 
         if (response.getStatusCode().is2xxSuccessful()) {
-            
-            return "redirect:/html/principal.html";
+            model.addAttribute("nombre", correo);
+            return "principal2";
         } else {
             redirectAttributes.addFlashAttribute("error", "Credenciales inválidas");
-            return "redirect:/html/login.html";
+            return "redirect:/api/cliente/login";
         }
 
     } catch (HttpClientErrorException.Unauthorized e) {
         redirectAttributes.addFlashAttribute("error", "Credenciales inválidas");
-        return "redirect:/html/login.html";
+        return "redirect:/api/cliente/login";
     } catch (HttpClientErrorException.Forbidden e) {
         redirectAttributes.addFlashAttribute("error", "Acceso denegado");
-        return "redirect:/html/login.html";
+        return "redirect:/api/cliente/login";
     } catch (Exception e) {
         redirectAttributes.addFlashAttribute("error", "Error de conexión con el servidor de autenticación");
-        return "redirect:/html/login.html";
+        return "redirect:/api/cliente/login";
     }
 }
 }

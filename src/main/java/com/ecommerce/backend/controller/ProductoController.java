@@ -26,7 +26,7 @@ public class ProductoController {
     @GetMapping("/listar")
     public String listarProductos(Model model) {
         RestTemplate restTemplate = new RestTemplate();
-        String url = "http://10.101.136.35:8081/producto/findAll";
+        String url = "http://10.101.136.126:8081/producto/findAll";
 
         try {
             ResponseEntity<Producto[]> response = restTemplate.getForEntity(url, Producto[].class);
@@ -38,10 +38,44 @@ public class ProductoController {
         return "principal";
     }
 
+    @GetMapping("/catalogo")
+    public String mostrarCatalogo(Model model) {
+        RestTemplate restTemplate = new RestTemplate();
+        String url = "http://10.101.136.126:8081/producto/findAll";
+
+        try {
+            ResponseEntity<Producto[]> response = restTemplate.getForEntity(url, Producto[].class);
+            List<Producto> productos = Arrays.asList(response.getBody());
+            model.addAttribute("productos", productos);
+        } catch (Exception e) {
+            model.addAttribute("error", "No se pudieron cargar los productos.");
+        }
+        return "product_catalog"; 
+    }
+
     @GetMapping("/find/{id}")
     public Producto buscarPorId(@PathVariable UUID id) {
         return productoService.obtenerProductoPorId(id);
     }
+
+    @GetMapping("/detalle/{id}")
+    public String mostrarDetalle(@PathVariable UUID id, Model model) {
+        RestTemplate restTemplate = new RestTemplate();
+        String url = "http://10.101.136.126:8081/producto/find/" + id;
+
+        try {
+            ResponseEntity<Producto> response = restTemplate.getForEntity(url, Producto.class);
+            Producto producto = response.getBody();
+            model.addAttribute("producto", producto);
+        } catch (Exception e) {
+            model.addAttribute("error", "No se pudo cargar el producto con ID: " + id);
+            return "redirect:/listar";
+        }
+
+        return "product_detail";
+    }
+
+
 
     @PostMapping("/add")
     public Producto crear(@RequestBody Producto producto) {

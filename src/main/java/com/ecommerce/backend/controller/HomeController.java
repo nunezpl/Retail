@@ -8,6 +8,6 @@ public class HomeController {
 
     @GetMapping("/")
     public String redirigirAPrincipal() {
-        return "redirect:/html/principal.html";
+        return "redirect:/api/producto/listar";
     }
 }
