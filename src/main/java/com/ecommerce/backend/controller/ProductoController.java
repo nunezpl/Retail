@@ -3,6 +3,8 @@ package com.ecommerce.backend.controller;
 import com.ecommerce.backend.model.Producto;
 import com.ecommerce.backend.service.ProductoService;
 
+import jakarta.servlet.http.HttpSession;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -11,6 +13,7 @@ import org.springframework.ui.Model;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 @Controller
@@ -39,9 +42,12 @@ public class ProductoController {
     }
 
     @GetMapping("/catalogo")
-    public String mostrarCatalogo(Model model) {
+    public String mostrarCatalogo(Model model, HttpSession session) {
         RestTemplate restTemplate = new RestTemplate();
         String url = "http://10.43.103.229:8080/producto/findAll";
+
+        // Datos del cliente
+        datosCliente(model, session);
 
         try {
             ResponseEntity<Producto[]> response = restTemplate.getForEntity(url, Producto[].class);
@@ -51,6 +57,23 @@ public class ProductoController {
             model.addAttribute("error", "No se pudieron cargar los productos.");
         }
         return "product_catalog"; 
+    }
+
+    public void datosCliente (Model model, HttpSession session){
+        Object cedula = session.getAttribute("cedula");
+        System.out.println("Cedula en sesión al entrar al catalogo: " + cedula);
+        String urlCliente = "http://10.43.96.39:5000/api/Clientes/cedula/" + cedula;
+
+        RestTemplate restTemplate = new RestTemplate();
+
+        ResponseEntity<Map> responseCliente = restTemplate.getForEntity(urlCliente, Map.class);
+        if (responseCliente.getStatusCode().is2xxSuccessful()) {
+            Map<String, Object> cliente = responseCliente.getBody();
+            String nombre = (String) cliente.get("nombre");
+            model.addAttribute("nombre", nombre);
+        } else {
+            model.addAttribute("nombre", "Usuario");
+        }
     }
 
     @GetMapping("/find/{id}")

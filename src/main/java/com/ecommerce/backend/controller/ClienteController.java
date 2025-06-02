@@ -116,7 +116,8 @@ public class ClienteController {
         @RequestParam String correo,
         @RequestParam String contrasena,
         RedirectAttributes redirectAttributes,
-        Model model) {
+        Model model,
+        HttpSession session) {
 
     
         RestTemplate restTemplate = new RestTemplate();
@@ -132,6 +133,19 @@ public class ClienteController {
 
             if (response.getStatusCode().is2xxSuccessful()) {
                 redirectAttributes.addAttribute("correo", correo);
+
+                String urlCorreo = "http://10.43.96.39:5000/api/Clientes/correo/" + correo;
+                ResponseEntity<Map> responseCorreo = restTemplate.getForEntity(urlCorreo, Map.class);
+                Map responseBodyCorreo = responseCorreo.getBody();
+
+                // Obtener y guardar Cedula
+                Number rawId = (Number) responseBodyCorreo.get("cedula");
+                Integer cedula = (rawId != null) ? rawId.intValue() : null;
+                session.setAttribute("cedula", cedula);
+
+                System.out.println("Cedula en sesión al entrar al perfil: " + session.getAttribute("cedula"));
+
+
                 return "redirect:/api/cliente/principal2";
             } else {
                 redirectAttributes.addFlashAttribute("error", "Credenciales inválidas");

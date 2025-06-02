@@ -39,7 +39,7 @@
       <div class="card" th:each="cat : ${categorias}">
         <img th:src="@{'/img/' + ${#strings.replace(cat.toLowerCase(), ' ', '')} + '.jpeg'}" th:alt="${cat}">
         <p th:text="${cat}">Category</p>
-        <a th:href="@{/catalogo}" class="btn outline">View More</a>
+        <a th:href="@{/api/producto/catalogo}" class="btn outline">View More</a>
       </div>
     </div>
   </section>
