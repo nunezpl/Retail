@@ -4,14 +4,17 @@ import com.ecommerce.backend.model.Producto;
 import com.ecommerce.backend.service.ProductoService;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.RestTemplate;
+import org.springframework.ui.Model;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
 
-@RestController
-@RequestMapping("/api/productos")
-@CrossOrigin(origins = "http://localhost:3000")
+@Controller
+@RequestMapping("/api/producto")
 public class ProductoController {
 
     private final ProductoService productoService;
@@ -20,9 +23,19 @@ public class ProductoController {
         this.productoService = productoService;
     }
 
-    @GetMapping
-    public List<Producto> listar() {
-        return productoService.listarProductos();
+    @GetMapping("/listar")
+    public String listarProductos(Model model) {
+        RestTemplate restTemplate = new RestTemplate();
+        String url = "http://10.101.136.35:8081/producto/findAll";
+
+        try {
+            ResponseEntity<Producto[]> response = restTemplate.getForEntity(url, Producto[].class);
+            List<Producto> productos = Arrays.asList(response.getBody());
+            model.addAttribute("productos", productos);
+        } catch (Exception e) {
+            model.addAttribute("error", "No se pudieron cargar los productos.");
+        }
+        return "principal";
     }
 
     @GetMapping("/find/{id}")

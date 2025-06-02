@@ -23,4 +23,8 @@ public class Producto {
     private Double precioVenta;
 
     private Integer existencias;
+
+    private String linkImagen;
+
+    private String  categoria;
 }

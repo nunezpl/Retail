@@ -1,25 +1,25 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8">
   <title>ShopiPop - Inicio</title>
 
   <!-- Fuente Quicksand -->
   <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../css/principal.css">
+  <link rel="stylesheet" th:href="@{/css/principal.css}">
 </head>
 <body>
   <header>
     <nav class="navbar">
       <div class="logo">ShopiPop</div>
       <ul class="nav-links">
-        <li><a href="principal.html" class="active">Home</a></li>
-        <li><a href="product_catalog.html">Products</a></li>
-        <li><a href="about_us.html">About Us</a></li>
+        <li><a th:href="@{/html/principal.html}" class="active">Home</a></li>
+        <li><a th:href="@{/html/product_catalog.html}">Products</a></li>
+        <li><a th:href="@{/html/about_us.html}">About Us</a></li>
       </ul>
       <div class="nav-buttons">
-        <a href="create_account.html" class="btn outline">Sign Up</a>
-        <a href="login.html" class="btn fill">Sign In</a>
+        <a th:href="@{/html/create_account.html}" class="btn outline">Sign Up</a>
+        <a th:href="@{/html/login.html}" class="btn fill">Sign In</a>
       </div>
     </nav>
   </header>
@@ -34,51 +34,50 @@
   <section class="section" id="categories">
     <h2>Featured Categories</h2>
     <div class="grid categories">
-      <!-- Cards de categorías -->
       <div class="card">
-        <img src="../img/electronics.jpeg" alt="Electronics">
+        <img th:src="@{/img/electronics.jpeg}" alt="Electronics">
         <p>Electronics</p>
-        <a href="product_catalog.html" class="btn outline">View More</a>
+        <a th:href="@{/html/product_catalog.html}" class="btn outline">View More</a>
       </div>
       <div class="card">
-        <img src="../img/sports.jpeg" alt="Sports">
+        <img th:src="@{/img/sports.jpeg}" alt="Sports">
         <p>Sports</p>
-        <a href="product_catalog.html" class="btn outline">View More</a>
+        <a th:href="@{/html/product_catalog.html}" class="btn outline">View More</a>
       </div>
       <div class="card">
-        <img src="../img/beauty.jpg" alt="Beauty">
+        <img th:src="@{/img/beauty.jpg}" alt="Beauty">
         <p>Beauty</p>
-        <a href="product_catalog.html" class="btn outline">View More</a>
+        <a th:href="@{/html/product_catalog.html}" class="btn outline">View More</a>
       </div>
       <div class="card">
-        <img src="../img/clothing.jpeg" alt="Clothing">
+        <img th:src="@{/img/clothing.jpeg}" alt="Clothing">
         <p>Clothing</p>
-        <a href="product_catalog.html" class="btn outline">View More</a>
+        <a th:href="@{/html/product_catalog.html}" class="btn outline">View More</a>
       </div>
       <div class="card">
-        <img src="../img/books.jpg" alt="Books">
+        <img th:src="@{/img/books.jpg}" alt="Books">
         <p>Books</p>
-        <a href="product_catalog.html" class="btn outline">View More</a>
+        <a th:href="@{/html/product_catalog.html}" class="btn outline">View More</a>
       </div>
       <div class="card">
-        <img src="../img/homegoods.jpg" alt="Home Goods">
+        <img th:src="@{/img/homegoods.jpg}" alt="Home Goods">
         <p>Home Goods</p>
-        <a href="product_catalog.html" class="btn outline">View More</a>
+        <a th:href="@{/html/product_catalog.html}" class="btn outline">View More</a>
       </div>
     </div>
   </section>
 
   <section class="section">
-  <h2>Featured Products</h2>
-  <div class="grid products">
-    <div class="card" th:each="producto : ${productos}">
-      <img th:src="@{'/img/' + ${producto.imagen}}" th:alt="${producto.nombre}">
-      <h3 th:text="${producto.nombre}">Nombre Producto</h3>
-      <p th:text="'$' + ${producto.precio}">Precio</p>
-      <a href="product_detail.html" class="btn outline">View More</a>
+    <h2>Featured Products</h2>
+    <div class="grid products">
+      <div class="card" th:each="producto : ${productos}">
+        <img th:src="${producto.linkImagen}" th:alt="${producto.nombre}">
+        <h3 th:text="${producto.nombre}">Nombre Producto</h3>
+        <p th:text="'$' + ${producto.precioVenta}">Precio</p>
+        <a th:href="@{/html/product_detail.html}" class="btn outline">View More</a>
+      </div>
     </div>
-  </div>
-</section>
+  </section>
 
   <section class="section promo">
     <div class="promo-content">
@@ -87,7 +86,7 @@
         <p>Sign up for our newsletter today and receive a special discount code delivered straight to your inbox. Don't miss out on exclusive deals!</p>
         <a href="#" class="btn fill">Claim Your Discount</a>
       </div>
-      <img src="../img/imagen.jpg" alt="Discount">
+      <img th:src="@{/img/imagen.jpg}" alt="Discount">
     </div>
   </section>
 
@@ -95,19 +94,19 @@
     <h2>Hear from our awesome users!</h2>
     <div class="testimonial-cards">
       <div class="testimonial">
-        <img src="img/user1.jpg" alt="Emily">
+        <img th:src="@{/img/user1.jpg}" alt="Emily">
         <h4>Emily R.</h4>
         <p>★★★★★</p>
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
       </div>
       <div class="testimonial">
-        <img src="img/user2.jpg" alt="James">
+        <img th:src="@{/img/user2.jpg}" alt="James">
         <h4>James P.</h4>
         <p>★★★★★</p>
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
       </div>
       <div class="testimonial">
-        <img src="img/user3.jpg" alt="Sophia">
+        <img th:src="@{/img/user3.jpg}" alt="Sophia">
         <h4>Sophia L.</h4>
         <p>★★★★★</p>
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
