@@ -8,8 +8,8 @@ public class DeliveryDataDTO {
     private UUID id;
     private String cedula;
     private String direccion;
-    private LocalDate fechaCreacion;
-    private LocalDate fechaEstimada;
+    private String fechaCreacion;
+    private String fechaEstimada;
     private String estado;
     private List<ProductoDeliveryDTO> productos;
 
@@ -38,19 +38,19 @@ public class DeliveryDataDTO {
         this.direccion = direccion;
     }
 
-    public LocalDate getFechaCreacion() {
+    public String getFechaCreacion() {
         return fechaCreacion;
     }
 
-    public void setFechaCreacion(LocalDate fechaCreacion) {
+    public void setFechaCreacion(String fechaCreacion) {
         this.fechaCreacion = fechaCreacion;
     }
 
-    public LocalDate getFechaEstimada() {
+    public String getFechaEstimada() {
         return fechaEstimada;
     }
 
-    public void setFechaEstimada(LocalDate fechaEstimada) {
+    public void setFechaEstimada(String fechaEstimada) {
         this.fechaEstimada = fechaEstimada;
     }
 

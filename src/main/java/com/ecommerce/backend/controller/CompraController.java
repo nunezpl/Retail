@@ -2,14 +2,15 @@ package com.ecommerce.backend.controller;
 
 import com.ecommerce.backend.model.Compra;
 import com.ecommerce.backend.service.CompraService;
+
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.UUID;
 
-@RestController
+@Controller
 @RequestMapping("/api/compras")
-@CrossOrigin(origins = "http://localhost:3000")
 public class CompraController {
 
     private final CompraService compraService;

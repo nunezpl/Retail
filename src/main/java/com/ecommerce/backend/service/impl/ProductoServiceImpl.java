@@ -6,6 +6,7 @@ import com.ecommerce.backend.service.ProductoService;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
@@ -51,5 +52,11 @@ public class ProductoServiceImpl implements ProductoService {
         throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Producto no encontrado");
             }
             productoRepository.deleteById(id);
+    }
+    @Override
+    public Producto buscarPorId(UUID id) {
+        String url = "http://10.43.103.229:8080/producto/find/" + id;
+        RestTemplate restTemplate = new RestTemplate();
+        return restTemplate.getForObject(url, Producto.class);
     }
 }

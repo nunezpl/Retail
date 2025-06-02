@@ -56,7 +56,12 @@
       <div><strong>Categoría:</strong> <span th:text="${producto.categoria}">Sin categoría</span></div>
     </div>
     </section>
-
+    <div class="acciones">
+  <form th:action="@{/carrito/agregar}" method="post">
+  <input type="hidden" name="idProducto" th:value="${producto.id}" />
+  <button type="submit" class="btn fill">Agregar al Carrito</button>
+</form>
+</div>
   </main>
 </div>
 

@@ -26,7 +26,7 @@ public class ProductoController {
     @GetMapping("/listar")
     public String listarProductos(Model model) {
         RestTemplate restTemplate = new RestTemplate();
-        String url = "http://10.101.136.126:8081/producto/findAll";
+        String url = "http://10.43.103.229:8080/producto/findAll";
 
         try {
             ResponseEntity<Producto[]> response = restTemplate.getForEntity(url, Producto[].class);
@@ -41,7 +41,7 @@ public class ProductoController {
     @GetMapping("/catalogo")
     public String mostrarCatalogo(Model model) {
         RestTemplate restTemplate = new RestTemplate();
-        String url = "http://10.101.136.126:8081/producto/findAll";
+        String url = "http://10.43.103.229:8080/producto/findAll";
 
         try {
             ResponseEntity<Producto[]> response = restTemplate.getForEntity(url, Producto[].class);
@@ -61,7 +61,7 @@ public class ProductoController {
     @GetMapping("/detalle/{id}")
     public String mostrarDetalle(@PathVariable UUID id, Model model) {
         RestTemplate restTemplate = new RestTemplate();
-        String url = "http://10.101.136.126:8081/producto/find/" + id;
+        String url = "http://10.43.103.229:8080/producto/find/" + id;
 
         try {
             ResponseEntity<Producto> response = restTemplate.getForEntity(url, Producto.class);

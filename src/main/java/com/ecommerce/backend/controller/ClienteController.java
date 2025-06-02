@@ -1,6 +1,7 @@
 package com.ecommerce.backend.controller;
 
 import com.ecommerce.backend.model.Cliente;
+import com.ecommerce.backend.model.Producto;
 import com.ecommerce.backend.service.ClienteService;
 
 import org.springframework.http.HttpEntity;
@@ -20,6 +21,7 @@ import org.springframework.http.MediaType;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.client.HttpClientErrorException;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -115,34 +117,73 @@ public class ClienteController {
         Model model) {
 
     
-    RestTemplate restTemplate = new RestTemplate();
+        RestTemplate restTemplate = new RestTemplate();
 
-    String url = "http://10.43.96.39:5000/api/Login/Cliente";
+        String url = "http://10.43.96.39:5000/api/Login/Cliente";
 
-    Map<String, String> body = new HashMap<>();
-    body.put("username", correo);
-    body.put("password", contrasena);
+        Map<String, String> body = new HashMap<>();
+        body.put("username", correo);
+        body.put("password", contrasena);
 
-    try {
-        ResponseEntity<Map> response = restTemplate.postForEntity(url, body, Map.class);
+        try {
+            ResponseEntity<Map> response = restTemplate.postForEntity(url, body, Map.class);
 
-        if (response.getStatusCode().is2xxSuccessful()) {
-            model.addAttribute("nombre", correo);
-            return "principal2";
-        } else {
+            if (response.getStatusCode().is2xxSuccessful()) {
+                redirectAttributes.addAttribute("correo", correo);
+                return "redirect:/api/cliente/principal2";
+            } else {
+                redirectAttributes.addFlashAttribute("error", "Credenciales inválidas");
+                return "redirect:/api/cliente/login";
+            }
+
+        } catch (HttpClientErrorException.Unauthorized e) {
             redirectAttributes.addFlashAttribute("error", "Credenciales inválidas");
             return "redirect:/api/cliente/login";
+        } catch (HttpClientErrorException.Forbidden e) {
+            redirectAttributes.addFlashAttribute("error", "Acceso denegado");
+            return "redirect:/api/cliente/login";
+        } catch (Exception e) {
+            redirectAttributes.addFlashAttribute("error", "Error de conexión con el servidor de autenticación");
+            return "redirect:/api/cliente/login";
+        }
+    }
+    @GetMapping("/principal2")
+    public String mostrarPrincipal(@RequestParam String correo, Model model) {
+        String urlProductos = "http://10.43.103.229:8080/producto/findAll";
+        String urlCliente = "http://10.43.96.39:5000/api/Clientes/correo/" + correo;
+
+        RestTemplate restTemplate = new RestTemplate();
+
+        // 1. Obtener información del cliente
+        try {
+            ResponseEntity<Map> responseCliente = restTemplate.getForEntity(urlCliente, Map.class);
+            if (responseCliente.getStatusCode().is2xxSuccessful()) {
+                Map<String, Object> cliente = responseCliente.getBody();
+                String nombre = (String) cliente.get("nombre");
+                model.addAttribute("nombre", nombre);
+            } else {
+                model.addAttribute("nombre", "Usuario");
+            }
+        } catch (Exception e) {
+            model.addAttribute("nombre", "Usuario");
         }
 
-    } catch (HttpClientErrorException.Unauthorized e) {
-        redirectAttributes.addFlashAttribute("error", "Credenciales inválidas");
-        return "redirect:/api/cliente/login";
-    } catch (HttpClientErrorException.Forbidden e) {
-        redirectAttributes.addFlashAttribute("error", "Acceso denegado");
-        return "redirect:/api/cliente/login";
-    } catch (Exception e) {
-        redirectAttributes.addFlashAttribute("error", "Error de conexión con el servidor de autenticación");
-        return "redirect:/api/cliente/login";
+        // 2. Obtener productos
+        try {
+            ResponseEntity<Producto[]> responseProductos = restTemplate.getForEntity(urlProductos, Producto[].class);
+            List<Producto> productos = Arrays.asList(responseProductos.getBody());
+            model.addAttribute("productos", productos);
+        } catch (Exception e) {
+            model.addAttribute("error", "No se pudieron cargar los productos.");
+        }
+
+        // 3. Agregar categorías
+        List<String> categorias = Arrays.asList("Electronics", "Sports", "Beauty", "Clothing", "Books", "Home Goods");
+        model.addAttribute("categorias", categorias);
+
+        return "principal2";
     }
-}
+
+
+
 }

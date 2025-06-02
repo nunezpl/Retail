@@ -11,4 +11,5 @@ public interface ProductoService {
     Producto guardarProducto(Producto producto);
     Producto actualizarProducto(UUID id, Producto producto);
     void eliminarProducto(UUID id);
+    Producto buscarPorId(UUID id);
 }
