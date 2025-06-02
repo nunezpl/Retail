@@ -1,0 +1,178 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Quicksand', sans-serif;
+  background-color: #f9f9fb;
+  color: #333;
+}
+
+/* Header igual al de la app */
+header {
+  background-color: #f4e7eb;
+  padding: 15px 40px;
+  border-bottom: 1px solid #eee;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  font-size: 24px;
+  font-weight: bold;
+  color: #f47ca3;
+}
+
+.nav-links {
+  display: flex;
+  list-style: none;
+  gap: 20px;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: #333;
+  font-weight: bold;
+  padding: 6px 10px;
+  border-bottom: 2px solid transparent;
+}
+
+.nav-links a.active {
+  border-bottom: 2px solid #f47ca3;
+  color: #f47ca3;
+}
+
+.profile-menu {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.profile-info {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.profile-picture {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #f47ca3;
+}
+
+/* Edit Form */
+.edit-container {
+  max-width: 600px;
+  margin: 40px auto;
+  padding: 30px;
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.05);
+}
+
+.edit-container h2 {
+  text-align: center;
+  margin-bottom: 30px;
+  color: #f47ca3;
+}
+
+.edit-form .form-group {
+  margin-bottom: 20px;
+}
+
+.edit-form label {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: 600;
+}
+
+.edit-form input[type="text"],
+.edit-form input[type="email"],
+.edit-form input[type="password"],
+.edit-form input[type="file"] {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-family: 'Quicksand', sans-serif;
+}
+
+.form-actions {
+  text-align: center;
+  margin-top: 30px;
+}
+
+.btn {
+  padding: 10px 20px;
+  font-weight: bold;
+  border-radius: 6px;
+  text-decoration: none;
+  cursor: pointer;
+  display: inline-block;
+  margin: 0 10px;
+}
+
+.btn.fill {
+  background-color: #f47ca3;
+  color: white;
+  border: none;
+}
+
+.btn.outline {
+  border: 2px solid #f47ca3;
+  color: #f47ca3;
+  background-color: transparent;
+}
+
+.btn:hover {
+  opacity: 0.85;
+  transform: scale(1.02);
+  transition: all 0.2s ease-in-out;
+}
+
+/* Footer */
+.footer {
+  background-color: #222;
+  color: #eee;
+  padding: 40px 20px;
+  text-align: center;
+  margin-top: 60px;
+}
+
+.footer .newsletter {
+  margin-bottom: 30px;
+}
+
+.footer input[type="email"] {
+  padding: 8px;
+  border-radius: 4px;
+  border: none;
+  margin-right: 10px;
+}
+
+.footer-links ul {
+  list-style: none;
+  padding: 0;
+  margin: 20px 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 15px;
+}
+
+.footer-links li {
+  font-size: 14px;
+  color: #ccc;
+}
+
+.footer-links p {
+  font-size: 13px;
+  color: #aaa;
+}

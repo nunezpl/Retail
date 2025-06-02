@@ -4,6 +4,8 @@ import com.ecommerce.backend.model.Cliente;
 import com.ecommerce.backend.model.Producto;
 import com.ecommerce.backend.service.ClienteService;
 
+import jakarta.servlet.http.HttpSession;
+
 import org.springframework.http.HttpEntity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -99,10 +101,10 @@ public class ClienteController {
 
 
 
-    @PutMapping("/{cedula}")
-    public Cliente actualizarCliente(@PathVariable Integer cedula, @RequestBody Cliente cliente) {
-        return clienteService.actualizarCliente(cedula, cliente);
-    }
+    // @PutMapping("/{cedula}")
+    // public Cliente actualizarCliente(@PathVariable Integer cedula, @RequestBody Cliente cliente) {
+    //     return clienteService.actualizarCliente(cedula, cliente);
+    // }
 
     @DeleteMapping("/{cedula}")
     public void eliminarCliente(@PathVariable Integer cedula) {
@@ -161,6 +163,7 @@ public class ClienteController {
                 Map<String, Object> cliente = responseCliente.getBody();
                 String nombre = (String) cliente.get("nombre");
                 model.addAttribute("nombre", nombre);
+                model.addAttribute("correo", correo);
             } else {
                 model.addAttribute("nombre", "Usuario");
             }
@@ -185,5 +188,83 @@ public class ClienteController {
     }
 
 
+    @GetMapping("/perfil")
+    public String verPerfilPorCorreo(@RequestParam String correo, Model model, RedirectAttributes redirectAttributes) {
+        String urlCliente = "http://10.43.96.39:5000/api/Clientes/correo/" + correo;
+        RestTemplate restTemplate = new RestTemplate();
+
+        try {
+            ResponseEntity<Map> responseCliente = restTemplate.getForEntity(urlCliente, Map.class);
+            if (responseCliente.getStatusCode().is2xxSuccessful()) {
+                Map<String, Object> cliente = responseCliente.getBody();
+
+                // Cargar atributos al modelo para Thymeleaf
+                model.addAttribute("cliente", cliente);
+                return "profile"; // renderiza templates/profile.html
+            } else {
+                redirectAttributes.addFlashAttribute("error", "No se pudo obtener el perfil.");
+                return "redirect:/html/login.html";
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            redirectAttributes.addFlashAttribute("error", "Error al consultar el perfil.");
+            return "redirect:/html/login.html";
+        }
+    }
+
+
+    @GetMapping("/editar")
+    public String mostrarFormularioEdicion(@RequestParam String correo, Model model, RedirectAttributes redirectAttributes) {
+        String urlCliente = "http://10.43.96.39:5000/api/Clientes/correo/" + correo;
+        RestTemplate restTemplate = new RestTemplate();
+
+        try {
+            ResponseEntity<Map> response = restTemplate.getForEntity(urlCliente, Map.class);
+            if (response.getStatusCode().is2xxSuccessful()) {
+                model.addAttribute("cliente", response.getBody());
+                return "edit_profile"; // templates/edit_profile.html
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        redirectAttributes.addFlashAttribute("error", "Error al cargar el perfil");
+        return "redirect:/api/cliente/login";
+    }
+
+    @PostMapping("/editar")
+    public String actualizarPerfil(
+            @RequestParam Integer id,
+            @RequestParam String nombre,
+            @RequestParam String apellido,
+            @RequestParam String correo,
+            @RequestParam String telefono,
+            @RequestParam String password,
+            RedirectAttributes redirectAttributes) {
+
+        String url = "http://10.43.96.39:5000/api/Clientes/" + id;
+        RestTemplate restTemplate = new RestTemplate();
+
+        Map<String, Object> body = new HashMap<>();
+        body.put("id", id); // aunque no se edita, se puede incluir por claridad
+        body.put("nombre", nombre);
+        body.put("apellido", apellido);
+        body.put("correo", correo);
+        body.put("telefono", telefono);
+        body.put("password", password);
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        HttpEntity<Map<String, Object>> entity = new HttpEntity<>(body, headers);
+
+        try {
+            restTemplate.put(url, entity);
+            return "redirect:/api/cliente/perfil?correo=" + correo;
+        } catch (Exception e) {
+            e.printStackTrace();
+            redirectAttributes.addFlashAttribute("error", "Error al actualizar perfil");
+            return "redirect:/api/cliente/editar?correo=" + correo;
+        }
+    }
 
 }

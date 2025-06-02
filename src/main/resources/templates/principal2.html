@@ -19,7 +19,7 @@
       </ul>
       <div class="profile-menu">
         <span class="profile-info" th:text="'Hola, ' + ${nombre}">Hola, Esteban</span>
-        <a th:href="@{/profile}">
+        <a th:href="@{'/api/cliente/perfil'(correo=${correo})}">
           <img th:src="@{/img/imagen.jpg}" alt="Profile" class="profile-picture">
         </a>
       </div>

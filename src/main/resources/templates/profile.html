@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>User Profile</title>
+  <link rel="stylesheet" th:href="@{/css/profile.css}">
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header>
+    <nav class="navbar">
+      <div class="logo">ShopiPop</div>
+      <ul class="nav-links">
+        <li><a href="principal.html" class="active">Home</a></li>
+        <li><a href="product_catalog.html">Products</a></li>
+        <li><a href="about_us.html">About Us</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <div class="profile-container">
+    <div class="profile-card">
+      <div class="profile-image">
+        <img th:src="@{/img/imagen.jpg}" alt="User Photo">
+      </div>
+      <div class="profile-info">
+        <h2 th:text="${cliente.nombre} + ' ' + ${cliente.apellido}">Nombre Completo</h2>
+        <p><strong>Cédula:</strong> <span th:number="${cliente.cedula}">12345678</span></p>
+        <p><strong>Email:</strong> <span th:text="${cliente.correo}">correo@example.com</span></p>
+        <p><strong>Teléfono:</strong> <span th:text="${cliente.telefono}">N/A</span></p>
+        <a th:href="@{/api/cliente/editar(correo=${cliente.correo})}" class="btn fill">Edit Profile</a>
+
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="newsletter">
+        <p>Subscribe to our newsletter</p>
+        <form class="newsletter-form">
+          <input type="email" placeholder="Input your email">
+          <button class="btn fill">Subscribe</button>
+        </form>
+      </div>
+
+      <div class="footer-links">
+        <p><strong>ShopiPop</strong></p>
+        <ul>
+          <li><a href="#">Pricing</a></li>
+          <li><a href="#">About us</a></li>
+          <li><a href="#">Features</a></li>
+          <li><a href="#">Help Center</a></li>
+          <li><a href="#">Contact us</a></li>
+          <li><a href="#">FAQs</a></li>
+          <li><a href="#">Careers</a></li>
+        </ul>
+        <p class="footer-bottom">© 2024 Brand, Inc. • <a href="#">Privacy</a> • <a href="#">Terms</a> • <a href="#">Sitemap</a></p>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

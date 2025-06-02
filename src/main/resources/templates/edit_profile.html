@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Editar Perfil</title>
+  <link rel="stylesheet" th:href="@{/css/edit_profile.css}">
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header>
+    <nav class="navbar">
+      <div class="logo">ShopiPop</div>
+      <ul class="nav-links">
+        <li><a th:href="@{/api/cliente/principal2(correo=${cliente.correo})}">Home</a></li>
+        <li><a href="product_catalog.html">Products</a></li>
+        <li><a href="about_us.html">About Us</a></li>
+      </ul>
+      <div class="profile-menu">
+        <span class="profile-info" th:text="'Hola, ' + ${cliente.nombre}">Hola, Esteban</span>
+        <a th:href="@{/api/cliente/perfil(correo=${cliente.correo})}">
+          <img th:src="@{/img/imagen.jpg}" alt="Profile" class="profile-picture">
+        </a>
+      </div>
+    </nav>
+  </header>
+
+  <main class="edit-container">
+    <h2>Edit Your Profile</h2>
+    <form class="edit-form" th:action="@{/api/cliente/editar}" method="post">
+      <input type="hidden" name="id" th:value="${cliente.id}" />
+
+      <div class="form-group">
+        <label>Nombre:</label>
+        <input type="text" name="nombre" th:value="${cliente.nombre}" required>
+      </div>
+
+      <div class="form-group">
+        <label>Apellido:</label>
+        <input type="text" name="apellido" th:value="${cliente.apellido}" required>
+      </div>
+
+      <div class="form-group">
+        <label>Email:</label>
+        <input type="email" name="correo" th:value="${cliente.correo}" required>
+      </div>
+
+      <div class="form-group">
+        <label>Teléfono:</label>
+        <input type="text" name="telefono" th:value="${cliente.telefono}" required>
+      </div>
+
+      <div class="form-group">
+        <label>Foto de Perfil:</label>
+        <input type="file" disabled>
+      </div>
+
+      <div class="form-group">
+        <label>Contraseña:</label>
+        <input type="password" name="password" placeholder="Nueva contraseña" required>
+      </div>
+
+      <div class="form-actions">
+        <button type="submit" class="btn fill">Guardar Cambios</button>
+        <a th:href="@{/api/cliente/perfil(correo=${cliente.correo})}" class="btn outline">Cancelar</a>
+      </div>
+    </form>
+  </main>
+
+  <footer class="footer">
+    <div class="newsletter">
+      <p>Subscribe to our newsletter</p>
+      <input type="email" placeholder="Input your email">
+      <button class="btn fill">Subscribe</button>
+    </div>
+    <div class="footer-links">
+      <p><strong>ShopiPop</strong></p>
+      <ul>
+        <li>Pricing</li>
+        <li>About us</li>
+        <li>Features</li>
+        <li>Help Center</li>
+        <li>Contact us</li>
+        <li>FAQs</li>
+        <li>Careers</li>
+      </ul>
+      <p>© 2024 Brand, Inc. • Privacy • Terms • Sitemap</p>
+    </div>
+  </footer>
+</body>
+</html>
