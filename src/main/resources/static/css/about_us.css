@@ -7,45 +7,65 @@ body {
   }
   
   header {
-    background-color: #f4e7eb;
-    padding: 15px 40px;
-    border-bottom: 1px solid #eee;
-  }
-  
-  .navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-  }
-  
-  .logo {
-    font-size: 24px;
-    font-weight: bold;
-    color: #f47ca3;
-  }
-  
-  .nav-links {
-    display: flex;
-    list-style: none;
-    gap: 20px;
-  }
-  
-  .nav-links a {
-    text-decoration: none;
-    color: #333;
-    font-weight: bold;
-    border-bottom: 2px solid transparent;
-  }
-  
-  .nav-links a.active {
-    border-bottom: 2px solid #f47ca3;
-    color: #f47ca3;
-  }
-  
-  .nav-buttons a {
-    margin-left: 10px;
-  }
+  background-color: #f4e7eb;
+  padding: 10px 40px;
+  border-bottom: 1px solid #eee;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: nowrap;
+}
+
+.logo {
+  font-size: 24px;
+  font-weight: bold;
+  color: #f47ca3;
+}
+
+.nav-links {
+  display: flex;
+  list-style: none;
+  gap: 20px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: #333;
+  font-weight: bold;
+  padding: 6px 10px;
+  border-bottom: 2px solid transparent;
+}
+
+.nav-links a.active {
+  border-bottom: 2px solid #f47ca3;
+  color: #f47ca3;
+}
+
+.profile-menu {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.profile-info {
+  font-size: 14px;
+  font-weight: 500;
+  color: #333;
+}
+
+.profile-picture {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #f47ca3;
+  cursor: pointer;
+}
   
   .btn {
     padding: 8px 16px;

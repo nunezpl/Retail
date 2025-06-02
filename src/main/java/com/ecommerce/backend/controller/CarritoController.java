@@ -84,7 +84,7 @@ public String agregarAlCarrito(@RequestParam("idProducto") UUID idProducto, Http
     }
 
     session.setAttribute("carrito", carrito);
-    return "redirect:/carrito";  // o donde quieras mostrar el resumen
+    return "redirect:/carrito";  
 }
 
     

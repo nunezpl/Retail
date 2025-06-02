@@ -11,16 +11,16 @@
     <nav class="navbar">
       <div class="logo">ShopiPop</div>
       <ul class="nav-links">
-        <li><a th:href="@{/api/producto/listar}" >Home</a></li>
-        <li><a th:href="@{/api/producto/catalogo}" class="active">Products</a></li>
+        <li><a href="principal2.html">Home</a></li>
+        <li><a href="product_catalog.html">Products</a></li>
         <li><a href="about_us.html">About Us</a></li>
       </ul>
-      <div class="nav-buttons">
-        <a th:href="@{/api/cliente/create-account}" class="btn outline">Sign Up</a>
-        <a th:href="@{/api/cliente/login}" class="btn fill">Sign In</a>
+      <div class="profile-menu">
+        <span class="profile-info">Hola, Esteban</span>
+        <a href="profile.html"><img src="../img/imagen.jpg" alt="Profile" class="profile-picture"></a>
       </div>
     </nav>
-  </header>
+  </header>
 
   <div class="layout">
     <aside class="sidebar">
