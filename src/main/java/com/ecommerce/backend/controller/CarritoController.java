@@ -87,5 +87,18 @@ public String agregarAlCarrito(@RequestParam("idProducto") UUID idProducto, Http
     return "redirect:/carrito";  
 }
 
-    
+    @GetMapping("/checkout")
+public String mostrarCheckout(HttpSession session, Model model) {
+    List<CarritoItem> carrito = (List<CarritoItem>) session.getAttribute("carrito");
+    if (carrito == null || carrito.isEmpty()) {
+        return "redirect:/carrito";
+    }
+
+    double total = carrito.stream().mapToDouble(CarritoItem::getSubtotal).sum();
+
+    model.addAttribute("carrito", carrito);
+    model.addAttribute("total", total);
+    return "checkout"; 
+}
+
 }
