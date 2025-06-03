@@ -3,6 +3,7 @@ package com.ecommerce.backend.controller;
 import com.ecommerce.backend.model.Cliente;
 import com.ecommerce.backend.model.Producto;
 import com.ecommerce.backend.service.ClienteService;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import jakarta.servlet.http.HttpSession;
 
@@ -16,6 +17,7 @@ import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -253,32 +255,51 @@ public class ClienteController {
             @RequestParam String apellido,
             @RequestParam String correo,
             @RequestParam String telefono,
-            @RequestParam String password,
+            @RequestParam String cedula,
             RedirectAttributes redirectAttributes) {
 
         String url = "http://10.43.96.39:5000/api/Clientes/" + id;
+
         RestTemplate restTemplate = new RestTemplate();
 
-        Map<String, Object> body = new HashMap<>();
-        body.put("id", id); // aunque no se edita, se puede incluir por claridad
-        body.put("nombre", nombre);
-        body.put("apellido", apellido);
-        body.put("correo", correo);
-        body.put("telefono", telefono);
-        body.put("password", password);
+        Map<String, Object> cliente = new HashMap<>();
+        cliente.put("id", id);
+        cliente.put("cedula", Integer.parseInt(cedula));
+        cliente.put("nombre", nombre);
+        cliente.put("apellido", apellido);
+        cliente.put("correo", correo);
+        cliente.put("telefono", telefono);
+        cliente.put("usuarioId", id);  // mismo valor que id según tu flujo
 
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
-        HttpEntity<Map<String, Object>> entity = new HttpEntity<>(body, headers);
+
+        HttpEntity<Map<String, Object>> requestEntity = new HttpEntity<>(cliente, headers);
 
         try {
-            restTemplate.put(url, entity);
+            // Confirmamos el JSON antes de enviar
+            ObjectMapper mapper = new ObjectMapper();
+            String jsonDebug = mapper.writeValueAsString(cliente);
+            System.out.println("JSON FINAL ENVIADO: " + jsonDebug);
+            
+            // SOLO USA exchange con HttpMethod.PUT
+            ResponseEntity<Void> response = restTemplate.exchange(
+                    url,
+                    HttpMethod.PUT,
+                    requestEntity,
+                    Void.class
+            );
+
+            System.out.println("Código de respuesta: " + response.getStatusCode());
+
             return "redirect:/api/cliente/perfil?correo=" + correo;
+
         } catch (Exception e) {
             e.printStackTrace();
             redirectAttributes.addFlashAttribute("error", "Error al actualizar perfil");
             return "redirect:/api/cliente/editar?correo=" + correo;
         }
     }
+
 
 }

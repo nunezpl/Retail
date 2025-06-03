@@ -10,4 +10,9 @@ public class HomeController {
     public String redirigirAPrincipal() {
         return "redirect:/api/producto/listar";
     }
+
+    @GetMapping("/about_us")
+    public String mostrarAboutUs() {
+        return "about_us"; 
+    }
 }

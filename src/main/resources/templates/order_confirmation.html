@@ -11,9 +11,9 @@
     <nav class="navbar">
       <div class="logo">ShopiPop</div>
       <ul class="nav-links">
-        <li><a href="principal2.html">Home</a></li>
-        <li><a href="product_catalog.html">Products</a></li>
-        <li><a href="about_us.html">About Us</a></li>
+        <li><a th:href="@{/principal2}" class="active">Home</a></li>
+        <li><a th:href="@{/api/producto/catalogo}">Products</a></li>
+        <li><a th:href="@{/about_us}">About Us</a></li>
       </ul>
       <div class="profile-menu">
         <span class="profile-info" th:text="'Hola, ' + ${nombre}">Hola, Esteban</span>

@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>About Us - ShopiPop</title>
-  <link rel="stylesheet" href="../css/about_us.css">
+  <link rel="stylesheet" th:href="@{/css/about_us.css}">
   <link href="https://fonts.googleapis.com/css2?family=Quicksand&display=swap" rel="stylesheet">
 </head>
 <body>
@@ -11,9 +11,9 @@
     <nav class="navbar">
       <div class="logo">ShopiPop</div>
       <ul class="nav-links">
-        <li><a href="principal.html">Home</a></li>
-        <li><a href="product_catalog.html">Products</a></li>
-        <li><a href="about_us.html" class="active">About Us</a></li>
+        <li><a th:href="@{/principal2}" class="active">Home</a></li>
+        <li><a th:href="@{/api/producto/catalogo}">Products</a></li>
+        <li><a th:href="@{/about_us}">About Us</a></li>
       </ul>
       <div class="nav-buttons">
         <a href="login.html" class="btn outline">Sign In</a>
@@ -30,7 +30,7 @@
     </section>
 
     <section class="section">
-      <img src="../img/imagen.jpg" alt="Mission & Vision">
+      <img th:src="@{/img/imagen.jpg}" alt="Mission & Vision">
       <div class="text">
         <h2>Mission & Vision</h2>
         <p>Our mission is to empower self-expression through curated collections and memorable shopping experiences. We envision a future where ShopiPop inspires creativity and spreads joy across homes worldwide.</p>
@@ -56,19 +56,19 @@
     <h2 style="text-align: center;">Hear from our awesome users!</h2>
     <div class="reviews">
       <div class="review">
-        <img src="../img/user1.jpg" alt="Emily">
+        <img th:src="@{/img/user1.jpg}" alt="Emily">
         <strong>Emily R.</strong>
         <div class="stars">★★★★★</div>
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
       </div>
       <div class="review">
-        <img src="../img/user2.jpg" alt="James">
+        <img th:src="@{/img/user2.jpg}" alt="James">
         <strong>James P.</strong>
         <div class="stars">★★★★★</div>
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
       </div>
       <div class="review">
-        <img src="../img/user3.jpg" alt="Sophia">
+        <img th:src="@{/img/user3.jpg}" alt="Sophia">
         <strong>Sophia L.</strong>
         <div class="stars">★★★★★</div>
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>

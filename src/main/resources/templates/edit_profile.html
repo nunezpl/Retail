@@ -12,8 +12,8 @@
       <div class="logo">ShopiPop</div>
       <ul class="nav-links">
         <li><a th:href="@{/api/cliente/principal2(correo=${cliente.correo})}">Home</a></li>
-        <li><a href="product_catalog.html">Products</a></li>
-        <li><a href="about_us.html">About Us</a></li>
+        <li><a th:href="@{/api/producto/catalogo}">Products</a></li>
+        <li><a th:href="@{/about_us}">About Us</a></li>
       </ul>
       <div class="profile-menu">
         <span class="profile-info" th:text="'Hola, ' + ${cliente.nombre}">Hola, Esteban</span>
@@ -50,13 +50,8 @@
       </div>
 
       <div class="form-group">
-        <label>Foto de Perfil:</label>
-        <input type="file" disabled>
-      </div>
-
-      <div class="form-group">
-        <label>Contraseña:</label>
-        <input type="password" name="password" placeholder="Nueva contraseña" required>
+        <label>Cedula:</label>
+        <input type="text" name="cedula" th:value="${cliente.cedula}" required>
       </div>
 
       <div class="form-actions">
