@@ -248,37 +248,36 @@ public class ClienteController {
 
     @PostMapping("/editar")
     public String actualizarPerfil(
-            @RequestParam Integer id,
-            @RequestParam String nombre,
-            @RequestParam String apellido,
-            @RequestParam String correo,
-            @RequestParam String telefono,
-            @RequestParam String password,
-            RedirectAttributes redirectAttributes) {
+        @RequestParam Integer id,
+        @RequestParam Integer cedula,
+        @RequestParam String nombre,
+        @RequestParam String apellido,
+        @RequestParam String correo,
+        @RequestParam String telefono,
+        RedirectAttributes redirectAttributes) {
 
-        String url = "http://10.43.96.39:5000/api/Clientes/" + id;
-        RestTemplate restTemplate = new RestTemplate();
+    String url = "http://10.43.96.39:5000/api/Clientes/" + id;
+    RestTemplate restTemplate = new RestTemplate();
 
-        Map<String, Object> body = new HashMap<>();
-        body.put("id", id); // aunque no se edita, se puede incluir por claridad
-        body.put("nombre", nombre);
-        body.put("apellido", apellido);
-        body.put("correo", correo);
-        body.put("telefono", telefono);
-        body.put("password", password);
+    Map<String, Object> body = new HashMap<>();
+    body.put("cedula", cedula);
+    body.put("nombre", nombre);
+    body.put("apellido", apellido);
+    body.put("correo", correo);
+    body.put("telefono", telefono);
 
-        HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.APPLICATION_JSON);
-        HttpEntity<Map<String, Object>> entity = new HttpEntity<>(body, headers);
+    HttpHeaders headers = new HttpHeaders();
+    headers.setContentType(MediaType.APPLICATION_JSON);
+    HttpEntity<Map<String, Object>> entity = new HttpEntity<>(body, headers);
 
-        try {
-            restTemplate.put(url, entity);
-            return "redirect:/api/cliente/perfil?correo=" + correo;
-        } catch (Exception e) {
-            e.printStackTrace();
-            redirectAttributes.addFlashAttribute("error", "Error al actualizar perfil");
-            return "redirect:/api/cliente/editar?correo=" + correo;
-        }
+    try {
+        restTemplate.put(url, entity);
+        return "redirect:/api/cliente/perfil?correo=" + correo;
+    } catch (Exception e) {
+        e.printStackTrace();
+        redirectAttributes.addFlashAttribute("error", "Error al actualizar perfil");
+        return "redirect:/api/cliente/editar?correo=" + correo;
     }
+}
 
 }
