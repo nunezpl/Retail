@@ -11,13 +11,13 @@
   <nav class="navbar">
     <div class="logo">ShopiPop</div>
     <ul class="nav-links">
-      <li><a th:href="@{/html/principal.html}">Home</a></li>
-      <li><a th:href="@{/html/product_catalog.html}" class="active">Products</a></li>
-      <li><a th:href="@{/html/about_us.html}">About Us</a></li>
+      <li><a th:href="@{/principal2}">Home</a></li>
+      <li><a th:href="@{/catalogo}" class="active">Products</a></li>
+      <li><a th:href="@{/about_us}">About Us</a></li>
     </ul>
     <div class="nav-buttons">
-      <a th:href="@{/html/login.html}" class="btn outline">Sign In</a>
-      <a th:href="@{/html/create_account.html}" class="btn fill">Sign Up</a>
+      <a th:href="@{/login}" class="btn outline">Sign In</a>
+      <a th:href="@{/registro}" class="btn fill">Sign Up</a>
     </div>
   </nav>
 </header>
@@ -28,7 +28,7 @@
 
     <div class="cart-container">
       <div class="cart-summary">
-         <h3><i class="icon"></i> Shopping Bag </h3>
+        <h3><i class="icon"></i> Shopping Bag </h3>
         <div class="cart-item" th:each="item : ${carrito}">
           <img th:src="@{/img/imagen.jpg}" alt="Product">
           <div class="item-info">
@@ -51,7 +51,11 @@
         <input type="text" placeholder="Voucher Code">
         <button class="btn outline">Apply</button>
         <h4>Total <span class="total" th:text="'$' + (${total} + 12)">Total</span></h4>
-        <a th:href="@{/html/checkout.html}" class="btn fill">Proceed to Checkout</a>
+        
+        <!-- CORREGIDO: boton que llama al endpoint /carrito/checkout -->
+        <form th:action="@{/carrito/checkout}" method="get">
+          <button type="submit" class="btn fill">Proceed to Checkout</button>
+        </form>
       </aside>
     </div>
 
